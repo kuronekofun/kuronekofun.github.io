@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>测试</title>
-    <url>/2022/04/27/test/</url>
-    <content><![CDATA[]]></content>
-      <tags>
-        <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>面向对象(上)</title>
     <url>/2022/04/26/oop/</url>
     <content><![CDATA[<h2 id="1-面向对象"><a href="#1-面向对象" class="headerlink" title="1 面向对象"></a>1 面向对象</h2><blockquote>
@@ -120,8 +112,11 @@
 <p>因为静态变量是存储在静态内存单元内，可以直接用类进行调用，也可以用实例化的对象对其引用。所以非静态方法是可以引用静态变量的。</p>
 <p><strong>注意：主类不能被protected和private修饰。</strong></p>
 ]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
       <tags>
-        <tag>JAVA</tag>
+        <tag>oop</tag>
       </tags>
   </entry>
 </search>
