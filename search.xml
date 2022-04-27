@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>测试</title>
+    <url>/2022/04/27/test/</url>
+    <content><![CDATA[]]></content>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面向对象(上)</title>
+    <url>/2022/04/26/oop/</url>
+    <content><![CDATA[<h2 id="1-面向对象"><a href="#1-面向对象" class="headerlink" title="1 面向对象"></a>1 面向对象</h2><blockquote>
+<p>类比现实世界中的事物以及方法的组织形式。把构成问题的事物按照一定规则划分为多个独立的对象，然后通过调用对象的方法来解决问题。</p>
+</blockquote>
+<p>面向过程：分析出解决问题所需要的步骤，然后用函数把这些步骤一一实现，使用时依次调用。</p>
+<h3 id="1-1-封装性"><a href="#1-1-封装性" class="headerlink" title="1.1 封装性"></a>1.1 封装性</h3><blockquote>
+<p>将对象的属性和行为看成一个整体封装在对象中并提供接口供外界访问。</p>
+<p>信息的隐藏：驾校的学员学开车，只需要知道如何操作汽车，而无需知道发动机是如何工作的。</p>
+</blockquote>
+<p>1.属性：需要直接定义在类的结构中，是全局的变量。在类中任何一个位置都可以访问。</p>
+<p>2.方法：用于封装独立的业务逻辑的功能，然后提供公共的访问接口（权限）。</p>
+<h3 id="1-2-继承性"><a href="#1-2-继承性" class="headerlink" title="1.2 继承性"></a>1.2 继承性</h3><blockquote>
+<p>把公信的代码抽离到某一个类中，而其他类直接拿来复用。</p>
+<p>在无需重新编写原有类的情况下，对原有类的功能进行扩展。</p>
+</blockquote>
+<p>有一个汽车类描述了汽车的普通特性和功能。若想生成轿车类，不仅会包含汽车的特性和功能，还应该增加轿车特有的功能。这时可以让轿车类继承汽车类，在轿车类中单独添加轿车特性和方法即可，实现了代码的复用和功能的扩展。</p>
+<h3 id="1-3-多态性"><a href="#1-3-多态性" class="headerlink" title="1.3 多态性"></a>1.3 多态性</h3><blockquote>
+<p>建立在继承基础之上：</p>
+<p>同一种事物的多种表现方式。</p>
+<p>子类中继承了父类的某些成员，并且更改了这些成员的结构。</p>
+</blockquote>
+<p>在父类中定义了一个method方法，子类不但把method方法继承了，还去更改了方法内部的业务实现的逻辑结构。</p>
+<h2 id="2-类与对象"><a href="#2-类与对象" class="headerlink" title="2 类与对象"></a>2 类与对象</h2><h3 id="2-1-类的定义"><a href="#2-1-类的定义" class="headerlink" title="2.1 类的定义"></a>2.1 类的定义</h3><p>1.类是将Java中的相同特性抽离出来，然后声明在一个类中，这个类有两部分：</p>
+<ul>
+<li>成员属性：描述类的特性，全局变量</li>
+<li>成员方法：描述类的功能</li>
+</ul>
+<p>类结构的定义：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">修饰符 class 类名&#123;</span><br><span class="line">	<span class="comment">// 成员属性</span></span><br><span class="line">	<span class="comment">// 成员方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义Student类</p>
+<p>若局部变量和类中的属性同名且在方法内部，则会以局部变量作为使用对象（就近原则）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="comment">/** 成员属性 */</span></span><br><span class="line">    String name;</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 成员方法 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">showInfo</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="comment">// 局部变量</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> <span class="number">30</span>;</span><br><span class="line">        System.out.println(<span class="string">&quot;姓名：&quot;</span> + name + <span class="string">&quot;,年龄：&quot;</span> + age);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.对象：对象是类的具体实现（对象是某种类型所约束的特性和功能的具体对象），而类是对象的抽象表现形式。需要依据当前的类结构来创建具体的实现（类的对象）。</p>
+<h3 id="2-2-对象的创建与使用"><a href="#2-2-对象的创建与使用" class="headerlink" title="2.2 对象的创建与使用"></a>2.2 对象的创建与使用</h3><p>通过一个类创建一个对象的过程叫实例化对象的过程。</p>
+<p>依据一个抽象的结构来声明一个具体的对象：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Example01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 对象的创建</span></span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu1</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        stu1 = <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line"></span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对象名称保存在栈中，将所创建的对象称之为引用数据类型。对象名称为stu的对象名称指向了当前堆中某个创建出来的对象数据所对应的堆地址，stu（对象名称）是这个对象的引用。</p>
+<img src="/2022/04/26/oop/image-20220425192701812.png" class="" title="image-20220425192701812">
+
+<p>在对象中访问属性和方法通过对象名称来访问。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">对象名.属性名；</span><br><span class="line">对象名.方法名；</span><br></pre></td></tr></table></figure>
+
+<p>创建学生对象，赋值基本信息，访问基本信息。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Example02</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 实例化Student对象</span></span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">        <span class="comment">// 1.访问对象的属性</span></span><br><span class="line">        stu1.name = <span class="string">&quot;小明&quot;</span>;</span><br><span class="line">        stu1.age = <span class="number">20</span>;</span><br><span class="line">        <span class="comment">// 2.访问对象的方法</span></span><br><span class="line">        stu1.showInfo();</span><br><span class="line"></span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">        stu2.name = <span class="string">&quot;小华&quot;</span>;</span><br><span class="line">        stu2.age = <span class="number">24</span>;</span><br><span class="line">        stu2.showInfo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/04/26/oop/image-20220425195531470.png" class="" title="image-20220425195531470">
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Example03</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将引用指向和stu1相同的堆地址</span></span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu2</span> <span class="operator">=</span> stu1;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给stu2初始化值</span></span><br><span class="line">        stu2.name = <span class="string">&quot;李四&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出stu1和stu2的信息</span></span><br><span class="line">        stu1.showInfo();</span><br><span class="line">        stu2.showInfo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2022/04/26/oop/image-20220425201135535.png" class="" title="image-20220425201135535">
+
+<img src="/2022/04/26/oop/image-20220425201041598.png" class="" title="image-20220425201041598">
+
+<p>总结：栈中的地址可以共用且可以指向同一个堆地址，若当前栈内容需要指向新的堆地址，JVM会自动先断开原有的指向。</p>
+<h3 id="2-3-对象的引用传递"><a href="#2-3-对象的引用传递" class="headerlink" title="2.3 对象的引用传递"></a>2.3 对象的引用传递</h3><p>把一个对象作为一个整体来进行数据的传递。</p>
+<p>先创建一个对象，然后对象初始化，定义一个可以接受一个对象的方法，然后把这个对象的信息展示出来。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Example04</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="comment">// 1.创建对象</span></span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">        stu1.name = <span class="string">&quot;小明&quot;</span>;</span><br><span class="line">        stu1.age = <span class="number">20</span>;</span><br><span class="line">        <span class="comment">// 2.定义一个方法用于接受这个对象</span></span><br><span class="line">        info(stu1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 方法的参数列表：</span></span><br><span class="line"><span class="comment">     *  参数类型 变量名</span></span><br><span class="line"><span class="comment">     *  Student student</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">info</span><span class="params">(Student student)</span>&#123;</span><br><span class="line">        student = <span class="keyword">new</span> <span class="title class_">Student</span>();</span><br><span class="line">        </span><br><span class="line">        <span class="type">String</span> <span class="variable">n</span> <span class="operator">=</span> student.name; <span class="comment">// null</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> student.age; <span class="comment">// 0</span></span><br><span class="line">        System.out.println(<span class="string">&quot;姓名是：&quot;</span> + n + <span class="string">&quot;,年龄是：&quot;</span> + a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<img src="/2022/04/26/oop/image-20220425204014617.png" class="" title="image-20220425204014617">
+
+<p>JVM自动将连接2断开后变为连接3</p>
+<img src="/2022/04/26/oop/image-20220425203503313.png" class="" title="image-20220425203503313">
+
+<h3 id="2-4-访问控制"><a href="#2-4-访问控制" class="headerlink" title="2.4 访问控制"></a>2.4 访问控制</h3><p>限定被访问资源的权限。</p>
+<table>
+<thead>
+<tr>
+<th><strong>修饰符</strong></th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public</td>
+<td>任意位置</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>包外可通过子类对象间接访问</td>
+</tr>
+<tr>
+<td>default</td>
+<td>同包</td>
+</tr>
+<tr>
+<td>private</td>
+<td>私有</td>
+</tr>
+</tbody></table>
+<img src="/2022/04/26/oop/image-20220425204533915.png" class="" title="image-20220425204533915">
+
+<p>包结构的作用：避免重名和分模块。</p>
+<p><strong>protected权限测试：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> modifier;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="keyword">protected</span> String name;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// protected普通方法</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">fun1</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;fun1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// protected静态方法</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">fun2</span><span class="params">()</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;fun2&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在包外创建类Example06：</p>
+<img src="/2022/04/26/oop/image-20220425231617143.png" class="" title="image-20220425231617143">
+
+<p><strong>为什么不能通过父类对象访问父类成员？而静态成员可以访问？</strong></p>
+<p>protected访问要求:<br>包外可通过子类对象访问，通过继承，子类可以获得父类方法的地址信息并把这些信息保存到自己的方法区，这样就可以通过子类对象访问自己的方法区从而间接的访问父类的方法。又因为静态方法访问会被静态绑定无需经过对象去访问方法区。</p>
+<img src="/2022/04/26/oop/image-20220425235008852.png" class="" title="image-20220425235008852">
+
+<p><strong>为什么静态方法不能调用非静态变量，非静态方法可以引用静态变量？</strong></p>
+<p>静态方法不属于对象，是属于类的，是不需要实例化的，而非静态变量是属于对象的，需要先实例化。在一个类的静态成员中去访问其非静态成员之所以会出错是因为在类的非静态成员不存在的时候类的静态成员就已经存在了，访问一个内存中不存在的东西当然会出错。</p>
+<p>相反，非静态方法是可以引用静态变量的。</p>
+<p>因为静态变量是存储在静态内存单元内，可以直接用类进行调用，也可以用实例化的对象对其引用。所以非静态方法是可以引用静态变量的。</p>
+<p><strong>注意：主类不能被protected和private修饰。</strong></p>
+]]></content>
+      <tags>
+        <tag>JAVA</tag>
+      </tags>
+  </entry>
+</search>
