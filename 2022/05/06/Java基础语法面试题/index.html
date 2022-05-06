@@ -21,30 +21,36 @@
     var CONFIG = {"hostname":"www.luotao.fun","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="天道之行，总司一切的男人。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="kuronekofun">
-<meta property="og:url" content="https://www.luotao.fun/index.html">
+  <meta name="description" content="Java基础语法面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础语法面试题">
+<meta property="og:url" content="https://www.luotao.fun/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
 <meta property="og:site_name" content="kuronekofun">
-<meta property="og:description" content="天道之行，总司一切的男人。">
+<meta property="og:description" content="Java基础语法面试题">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.luotao.fun/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220506174814415.png">
+<meta property="og:image" content="https://www.luotao.fun/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220506180546883.png">
+<meta property="article:published_time" content="2022-05-06T12:13:06.000Z">
+<meta property="article:modified_time" content="2022-05-06T13:19:12.960Z">
 <meta property="article:author" content="kuronekofun">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.luotao.fun/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220506174814415.png">
 
-<link rel="canonical" href="https://www.luotao.fun/">
+<link rel="canonical" href="https://www.luotao.fun/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>kuronekofun</title>
+  <title>Java基础语法面试题 | kuronekofun</title>
   
 
 
@@ -189,9 +195,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -207,10 +214,9 @@
       <meta itemprop="name" content="kuronekofun">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-title-link" itemprop="url">Java基础语法面试题</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Java基础语法面试题
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -247,6 +253,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>2 分钟</span>
             </span>
+            <div class="post-description">Java基础语法面试题</div>
 
         </div>
       </header>
@@ -257,16 +264,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Java基础语法面试题</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <h3 id="1-JDK和JRE的区别"><a href="#1-JDK和JRE的区别" class="headerlink" title="1 JDK和JRE的区别"></a>1 JDK和JRE的区别</h3><ul>
+<li><p>JRE：JavaRuntimeEnvironment，运行Java程序，包含JVM、Java基础类库。</p>
+</li>
+<li><p>JDK：Java Development Kit，提供开发环境和运行环境。</p>
+<p>包含JRE、编译源文件的编译器Javac、监控工具jconsole和分析工具jvisualvm。</p>
+</li>
+</ul>
+<h3 id="2-x3D-x3D-和equals-的区别"><a href="#2-x3D-x3D-和equals-的区别" class="headerlink" title="2 &#x3D;&#x3D; 和equals()的区别"></a>2 &#x3D;&#x3D; 和equals()的区别</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kuronekofun;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  ==和equals的区别</span></span><br><span class="line"><span class="comment"> *  ==解读：</span></span><br><span class="line"><span class="comment"> *      1.基本类型：值比较</span></span><br><span class="line"><span class="comment"> *      2.引用类型：引用比较(内存地址)</span></span><br><span class="line"><span class="comment"> *      3.不能比较没有父子关系的两个对象</span></span><br><span class="line"><span class="comment"> * equals解读：</span></span><br><span class="line"><span class="comment"> *      1.没有重写equals方法则同==,调用Object类中的equals,引用比较</span></span><br><span class="line"><span class="comment"> *      2.JDK中的类一般重写了equals，值比较</span></span><br><span class="line"><span class="comment"> *      3.String和Integer默认重写了equals方法：值比较</span></span><br><span class="line"><span class="comment"> *      4.重写对象的equals，一般须重写hashcode</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> kuroneko</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Sample01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sx</span> <span class="operator">=</span> <span class="string">&quot;string&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sy</span> <span class="operator">=</span> <span class="string">&quot;string&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sz</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(<span class="string">&quot;string&quot;</span>);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * String是引用类型，==引用比较，</span></span><br><span class="line"><span class="comment">         * 值为string的sx指向常量区中的一个位置xab123</span></span><br><span class="line"><span class="comment">         * y的值为string，和sx一样指向常量区中的xab123</span></span><br><span class="line"><span class="comment">         * so:</span></span><br><span class="line"><span class="comment">         *      true</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(sx == sy);</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * String和Cat是引用类型，==引用比较，Cat没有重写equals，引用比较</span></span><br><span class="line"><span class="comment">         * new关键字会重新开辟内存空间，值虽相同但引用不同</span></span><br><span class="line"><span class="comment">         * so:</span></span><br><span class="line"><span class="comment">         *      都为false</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(sx == sz);</span><br><span class="line">        <span class="type">Cat</span> <span class="variable">c1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&quot;黑猫&quot;</span>);</span><br><span class="line">        <span class="type">Cat</span> <span class="variable">c2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&quot;黑猫&quot;</span>);</span><br><span class="line">        System.out.println(c1.equals(c2));</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         *  String和Integer重写了equals，equals值比较</span></span><br><span class="line"><span class="comment">         *  so：</span></span><br><span class="line"><span class="comment">         *      都为true</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        System.out.println(sx.equals(sy));</span><br><span class="line">        System.out.println(sx.equals(sz));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Object类中equals方法的声明：同&#x3D;&#x3D;，引用比较</p>
+<img src="/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220506174814415.png" class="">
+
+<p>String类中equals方法的声明：重写了Object的equals方法，把引用比较改成了值比较</p>
+<img src="/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/image-20220506180546883.png" class="">
+
+<h3 id="3-hashCode-相同则equals-为true吗"><a href="#3-hashCode-相同则equals-为true吗" class="headerlink" title="3 hashCode()相同则equals()为true吗"></a>3 hashCode()相同则equals()为true吗</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.kuronekofun;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 两个对象的hashCode相同，equals不一定为true</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Sample02</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;通话&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;重地&quot;</span>;</span><br><span class="line">        System.out.println(String.format(<span class="string">&quot;str1：%d | str2：%d&quot;</span>,  str1.hashCode(),str2.hashCode()));</span><br><span class="line">        System.out.println(str1.equals(str2)); <span class="comment">// String重写了equals,值比较</span></span><br><span class="line">        <span class="comment">/**console</span></span><br><span class="line"><span class="comment">         * str1：1179395 | str2：1179395</span></span><br><span class="line"><span class="comment">         * false</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-基本类型和包装类对象使用-x3D-x3D-和equals比较"><a href="#4-基本类型和包装类对象使用-x3D-x3D-和equals比较" class="headerlink" title="4 基本类型和包装类对象使用&#x3D;&#x3D;和equals比较"></a>4 基本类型和包装类对象使用&#x3D;&#x3D;和equals比较</h3>
     </div>
 
     
@@ -274,15 +289,59 @@
     
 	
 	
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+-------------本文结束 <i class="fa fa-heart"></i> 感谢阅读-------------
+</div>
+
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="kuronekofun 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>kuronekofun
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.luotao.fun/2022/05/06/Java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E9%9D%A2%E8%AF%95%E9%A2%98/" title="Java基础语法面试题">https://www.luotao.fun/2022/05/06/Java基础语法面试题/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          </div>
+
+        
+
+
+        
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -335,6 +394,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-JDK%E5%92%8CJRE%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">1 JDK和JRE的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-x3D-x3D-%E5%92%8Cequals-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">2 &#x3D;&#x3D; 和equals()的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-hashCode-%E7%9B%B8%E5%90%8C%E5%88%99equals-%E4%B8%BAtrue%E5%90%97"><span class="nav-text">3 hashCode()相同则equals()为true吗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%8C%85%E8%A3%85%E7%B1%BB%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8-x3D-x3D-%E5%92%8Cequals%E6%AF%94%E8%BE%83"><span class="nav-text">4 基本类型和包装类对象使用&#x3D;&#x3D;和equals比较</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
