@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.luotao.fun/2022/05/07/%E9%9B%86%E5%90%88/20191002072124515__20191013143527.jpg">
 <meta property="article:published_time" content="2022-05-07T08:26:59.000Z">
-<meta property="article:modified_time" content="2022-05-10T03:45:58.520Z">
+<meta property="article:modified_time" content="2022-05-10T07:12:55.978Z">
 <meta property="article:author" content="kuronekofun">
 <meta property="article:tag" content="集合">
 <meta name="twitter:card" content="summary">
@@ -231,7 +231,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-10 11:45:58" itemprop="dateModified" datetime="2022-05-10T11:45:58+08:00">2022-05-10</time>
+                <time title="修改时间：2022-05-10 15:12:55" itemprop="dateModified" datetime="2022-05-10T15:12:55+08:00">2022-05-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,14 +249,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>311</span>
+              <span>3.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>4 分钟</span>
             </span>
             <div class="post-description">要努力，但也别焦虑</div>
 
@@ -275,8 +275,9 @@
 <ul>
 <li>List：有序，可重复</li>
 <li>Set：不重复，linkedHashSet按插入排序，SortedSet可排序，HashSet无序</li>
-<li>Map：存储键、值和之间的映射，key唯一</li>
+<li>Map：存储键、值和之间的映射，key唯一，继承自Object类</li>
 </ul>
+<h3 id="哪些集合类是线程安全的"><a href="#哪些集合类是线程安全的" class="headerlink" title="哪些集合类是线程安全的"></a>哪些集合类是线程安全的</h3><p>Vector、Stack、Hashtable、java.util.concurrent包下所有集合类（ArrayBlockingQueue、ConcurrentHashMap、ConcurrentLinkedQueue、ConcurrentLinkedDeque…）</p>
 <h3 id="ArrayList和Vector的联系和区别"><a href="#ArrayList和Vector的联系和区别" class="headerlink" title="ArrayList和Vector的联系和区别"></a>ArrayList和Vector的联系和区别</h3><ul>
 <li><p>底层都使用数组实现</p>
 </li>
@@ -291,7 +292,113 @@
 <li>Collection是集合的顶级接口，定义了集合类的基本方法。</li>
 <li>Collections是集合的工具类，包含集合操作的静态多态方法，不能实例化。</li>
 </ul>
-
+<h3 id="HashMap和Hashtable的区别"><a href="#HashMap和Hashtable的区别" class="headerlink" title="HashMap和Hashtable的区别"></a>HashMap和Hashtable的区别</h3><p>JDK1.8中</p>
+<ul>
+<li>HashMap非线程安全；Hashtable中方法是synchronized线程安全的</li>
+<li>HashMap继承自AbstractMap；Hashtable继承自Dictionary</li>
+<li>HashMap的Iterator是fail-fast迭代器；Hashtable还使用enumerator迭代器</li>
+<li>HashMap计算hash值；Hashtable使用key的hashCode方法</li>
+<li>HashMap默认初始容量16，扩容时翻倍；Hashtable默认初始容量11，扩容时2n+1</li>
+</ul>
+<h3 id="HashMap、TreeMap"><a href="#HashMap、TreeMap" class="headerlink" title="HashMap、TreeMap"></a>HashMap、TreeMap</h3><ul>
+<li>HashMap基于数组和链表实现；TreeMap基于红黑树实现</li>
+<li>HashMap不支持排序;TreeMap默认按Key升序排序，可指定比较器Comparator用于在存入数据时对元素自动排序</li>
+<li>HashMap有更好的性能</li>
+</ul>
+<h3 id="ArrayList、LinkedList"><a href="#ArrayList、LinkedList" class="headerlink" title="ArrayList、LinkedList"></a>ArrayList、LinkedList</h3><ul>
+<li>都是非线程安全的；ArrayList基于数组；LinkedList基于双向链表</li>
+<li>ArrayList默认初始化数组长度10，扩容时复制数组元素到新数组，新数组长度为原数组的1.5倍；LinkedList新增元素放到集合尾部，修改相应的指针节点即可，所以LinkedList的插入性能高</li>
+<li>LinkedList更占内存，因为LinkedList为每一个节点存储了两个引用节点，一个指向前一个元素，一个指向下一个元素</li>
+<li>对于随机index访问的get和set方法，ArrayList速度优于LinkedList。因为ArrayList直接通过数组下标找到元素；LinkedList移动指针遍历每个元素直到找到为止。</li>
+<li>新增、删除元素，LinkedList速度优于ArrayList；因为ArrayList可能扩容和复制数组；LinkedList只需要修改节点指正即可</li>
+<li>ArrayList的空间浪费体现在List列表的结尾预留一定的容量空间；LinkedList的每一个元素都需要空间存储指针节点对象</li>
+</ul>
+<h3 id="Array、ArrayList"><a href="#Array、ArrayList" class="headerlink" title="Array、ArrayList"></a>Array、ArrayList</h3><ul>
+<li>定义一个Array时，必须指定数组的类型及长度，即元素固定</li>
+<li>ArrayList是动态数组，自动扩容，不使用泛型时可添加不同类型元素</li>
+</ul>
+<h3 id="如何实现数组和List之间的转换"><a href="#如何实现数组和List之间的转换" class="headerlink" title="如何实现数组和List之间的转换"></a>如何实现数组和List之间的转换</h3><ul>
+<li>数组转List：java.util.Arrays工具类的asList方法</li>
+<li>List转数组：List的toArray方法</li>
+</ul>
+<h3 id="Queue的add-和offer-方法"><a href="#Queue的add-和offer-方法" class="headerlink" title="Queue的add()和offer()方法"></a>Queue的add()和offer()方法</h3><ul>
+<li>都用来向队列添加一个元素</li>
+<li>容量已满时，add抛出IllegalStateException异常，offer返回false</li>
+</ul>
+<h3 id="Queue的remove-和poll-方法"><a href="#Queue的remove-和poll-方法" class="headerlink" title="Queue的remove()和poll()方法"></a>Queue的remove()和poll()方法</h3><ul>
+<li>都用来从队列头部删除一个元素</li>
+<li>队列为空时，remove抛出NoSuchElementException异常；poll返回null</li>
+</ul>
+<h3 id="Queue的element-和peek-方法"><a href="#Queue的element-和peek-方法" class="headerlink" title="Queue的element()和peek()方法"></a>Queue的element()和peek()方法</h3><ul>
+<li>都用来返回队列的头元素</li>
+<li>队列为空时，element抛出NoSuchElementExcetpion异常，peek放回null</li>
+</ul>
+<h3 id="迭代器Iterator"><a href="#迭代器Iterator" class="headerlink" title="迭代器Iterator"></a>迭代器Iterator</h3><ul>
+<li>迭代器模式是设计模式，用于顺序访问集合对象的元素，无序知道集合对象的底层实现</li>
+<li>Iterator是可以遍历集合的对象，为各种容器提供了公共的操作接口。</li>
+<li>迭代器类与集合类成对增加</li>
+</ul>
+<h3 id="Iterator的特点，怎么使用"><a href="#Iterator的特点，怎么使用" class="headerlink" title="Iterator的特点，怎么使用"></a>Iterator的特点，怎么使用</h3><ul>
+<li>java.util.Collection接口继承了java.lang.Iterable接口，Iterator()方法返回一个Iterator对象</li>
+<li>next()方法获得集合中的下一个元素</li>
+<li>hashNext()检查集合中是否还有元素</li>
+<li>remove()方法删除迭代器新返回的元素</li>
+<li>forEachRemaining(Consumer&lt;?super E&gt;action)方法，遍历所有元素</li>
+</ul>
+<h3 id="Iterator、ListIterator"><a href="#Iterator、ListIterator" class="headerlink" title="Iterator、ListIterator"></a>Iterator、ListIterator</h3><ul>
+<li>ListIterator继承自Iterator，并扩展了许多方法</li>
+</ul>
+<h3 id="怎么确保一个集合不能被修改"><a href="#怎么确保一个集合不能被修改" class="headerlink" title="怎么确保一个集合不能被修改"></a>怎么确保一个集合不能被修改</h3><ul>
+<li>使用java.util.Collections类的unmodifiable***方法赋值原集合</li>
+<li>guava工具类</li>
+</ul>
+<h3 id="为什么基本数据类型不能作为HashMap的键值"><a href="#为什么基本数据类型不能作为HashMap的键值" class="headerlink" title="为什么基本数据类型不能作为HashMap的键值"></a>为什么基本数据类型不能作为HashMap的键值</h3><ul>
+<li>Java使用泛型来约束HashMap中的key和value类型，HashMap&lt;K,V&gt;</li>
+<li>泛型规定必须是对象Object类型的，基本数据类型不是Object类型，不能作为键值</li>
+<li>map.put（0，“ConstXiong”）中编译器已将key值0进行装箱，成为Integer类型</li>
+</ul>
+<h3 id="HashMap的键值需要注意什么"><a href="#HashMap的键值需要注意什么" class="headerlink" title="HashMap的键值需要注意什么"></a>HashMap的键值需要注意什么</h3><p>自定义类作为HashMap的key，需要注意按照自己的设计逻辑，重写自定义类的hashCode和equals方法。</p>
+<ul>
+<li>key的哈希值相同</li>
+<li>内存中是同一个对象</li>
+</ul>
+<h3 id="数组和集合的区别"><a href="#数组和集合的区别" class="headerlink" title="数组和集合的区别"></a>数组和集合的区别</h3><ul>
+<li>数组的效率优于集合</li>
+<li>数组能存基本类型和对象；集合只能存对象</li>
+<li>数组长度固定；集合容量动态改变</li>
+<li>集合以类的形式存在，符合面向对象，通过简单的方法和属性调用可实现各种复杂操作</li>
+<li>集合弥补了数组的一些缺点，比数组跟灵活</li>
+</ul>
+<h3 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h3><ul>
+<li>TreeSet基于TreeMap实现，TreeMap基于红黑树</li>
+<li>有序，非重复；增删元素效率高</li>
+<li>TreeSet默认构造，调用add方法时会调用对象类实现的Comparable接口的compareTo()方法和集合中的对象比较，根据方法返回的结果有序存储。若存入对象的类未实现Comparable接口则抛出ClassCastException</li>
+<li>TreeSet支持构造方法指定Comparator接口，按照Comparator实现类的比较逻辑进行有序存储</li>
+</ul>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h3><ul>
+<li>HashSet基于HashMap实现，查询速度快，key可为null</li>
+<li>无序、不可重复</li>
+</ul>
+<h3 id="HashSet和HashMap"><a href="#HashSet和HashMap" class="headerlink" title="HashSet和HashMap"></a>HashSet和HashMap</h3><ul>
+<li>HashMap实现Map接口，put(K key, V value)新增元素，底层通过对key进行hash，使用数组+链表或红黑树对键值存储</li>
+<li>HashSet实现Set接口，add(E e)新增元素对象，底层使用HashMap，大部分方法通过调用HashMap实现。</li>
+</ul>
+<h3 id="HashMap实现原理"><a href="#HashMap实现原理" class="headerlink" title="HashMap实现原理"></a>HashMap实现原理</h3><p>JDK1.7的HashMap基于数组+链表实现，所以Hash冲突时链表的查询效率低。</p>
+<p><strong>JDK1.8的HashMap:</strong></p>
+<ul>
+<li><p>基于Hash算法实现，通过put(key, value)存储，get(key)获取value</p>
+</li>
+<li><p>当传入key时，根据key调用hash(Object key)方法计算出hash值，再根据hash值将value保存在Node对象里，Node对象有存放在数组中</p>
+</li>
+<li><p>计算出的hash值相同时，称之为Hash冲突，HashMap的做法是用链表和红黑树存储相同hash值的value</p>
+</li>
+<li><p>当hash冲突的个数&lt;&#x3D;8时维护一张链表；&gt;&#x3D;8且hash表length&gt;&#x3D;64时，转为红黑树</p>
+</li>
+<li><p>hash(Object key)方法的具体算法：</p>
+<p>(h &#x3D; key.hashCode())^(h &gt;&gt;&gt; 16)使计算的hash值分布更均匀</p>
+</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
     </div>
 
     
@@ -411,7 +518,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%89"><span class="nav-text">Java有哪些常用容器（集合）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList%E5%92%8CVector%E7%9A%84%E8%81%94%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB"><span class="nav-text">ArrayList和Vector的联系和区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection%E5%92%8CCollections"><span class="nav-text">Collection和Collections</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-text">集合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E6%9C%89%E5%93%AA%E4%BA%9B%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%89"><span class="nav-text">Java有哪些常用容器（集合）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%AA%E4%BA%9B%E9%9B%86%E5%90%88%E7%B1%BB%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84"><span class="nav-text">哪些集合类是线程安全的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList%E5%92%8CVector%E7%9A%84%E8%81%94%E7%B3%BB%E5%92%8C%E5%8C%BA%E5%88%AB"><span class="nav-text">ArrayList和Vector的联系和区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection%E5%92%8CCollections"><span class="nav-text">Collection和Collections</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%E5%92%8CHashtable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">HashMap和Hashtable的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%E3%80%81TreeMap"><span class="nav-text">HashMap、TreeMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArrayList%E3%80%81LinkedList"><span class="nav-text">ArrayList、LinkedList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array%E3%80%81ArrayList"><span class="nav-text">Array、ArrayList</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E6%95%B0%E7%BB%84%E5%92%8CList%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-text">如何实现数组和List之间的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue%E7%9A%84add-%E5%92%8Coffer-%E6%96%B9%E6%B3%95"><span class="nav-text">Queue的add()和offer()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue%E7%9A%84remove-%E5%92%8Cpoll-%E6%96%B9%E6%B3%95"><span class="nav-text">Queue的remove()和poll()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue%E7%9A%84element-%E5%92%8Cpeek-%E6%96%B9%E6%B3%95"><span class="nav-text">Queue的element()和peek()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8Iterator"><span class="nav-text">迭代器Iterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%8C%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8"><span class="nav-text">Iterator的特点，怎么使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator%E3%80%81ListIterator"><span class="nav-text">Iterator、ListIterator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%A1%AE%E4%BF%9D%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88%E4%B8%8D%E8%83%BD%E8%A2%AB%E4%BF%AE%E6%94%B9"><span class="nav-text">怎么确保一个集合不能被修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B8%8D%E8%83%BD%E4%BD%9C%E4%B8%BAHashMap%E7%9A%84%E9%94%AE%E5%80%BC"><span class="nav-text">为什么基本数据类型不能作为HashMap的键值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%E7%9A%84%E9%94%AE%E5%80%BC%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88"><span class="nav-text">HashMap的键值需要注意什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%92%8C%E9%9B%86%E5%90%88%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">数组和集合的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TreeSet"><span class="nav-text">TreeSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashSet"><span class="nav-text">HashSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashSet%E5%92%8CHashMap"><span class="nav-text">HashSet和HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">HashMap实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-text"></span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -494,12 +601,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">14k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12 分钟</span>
+    <span title="站点阅读时长">15 分钟</span>
 </div>
 
 <!-- 网站运行时间的设置 -->
