@@ -50,6 +50,22 @@
       </tags>
   </entry>
   <entry>
+    <title>Java异常体系</title>
+    <url>/2022/05/08/Java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/</url>
+    <content><![CDATA[<h2 id="Java异常体系"><a href="#Java异常体系" class="headerlink" title="Java异常体系"></a>Java异常体系</h2><img src="/2022/05/08/Java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/image-20220513202951049.png" class="">
+
+<p>Error：Java运行时系统内部错误或者资源耗尽。</p>
+<p><strong>非检查型异常</strong>：Error和RuntimeException都是编译器无法提前预测的。</p>
+<p><strong>检查型异常</strong>：编译器要求必须对其进行处理的异常。</p>
+]]></content>
+      <categories>
+        <category>Java基础</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>集合</title>
     <url>/2022/05/07/%E9%9B%86%E5%90%88/</url>
     <content><![CDATA[<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h3 id="Java有哪些常用容器（集合）"><a href="#Java有哪些常用容器（集合）" class="headerlink" title="Java有哪些常用容器（集合）"></a>Java有哪些常用容器（集合）</h3><p>Java容器分为Collection与Map两大接口。</p>
@@ -187,22 +203,6 @@
       </categories>
       <tags>
         <tag>集合</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java异常体系</title>
-    <url>/2022/05/08/Java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/</url>
-    <content><![CDATA[<h2 id="Java异常体系"><a href="#Java异常体系" class="headerlink" title="Java异常体系"></a>Java异常体系</h2><img src="/2022/05/08/Java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/image-20220513202951049.png" class="">
-
-<p>Error：Java运行时系统内部错误或者资源耗尽。</p>
-<p><strong>非检查型异常</strong>：Error和RuntimeException都是编译器无法提前预测的。</p>
-<p><strong>检查型异常</strong>：编译器要求必须对其进行处理的异常。</p>
-]]></content>
-      <categories>
-        <category>Java基础</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
