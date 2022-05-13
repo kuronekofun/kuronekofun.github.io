@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon_16x16-next.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.luotao.fun","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="定性-分析-解决-预防">
+<meta property="og:type" content="article">
+<meta property="og:title" content="慕慕生鲜电商项目">
+<meta property="og:url" content="https://www.luotao.fun/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="kuronekofun">
+<meta property="og:description" content="定性-分析-解决-预防">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.luotao.fun/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/image-20220513115417093.png">
+<meta property="og:image" content="https://www.luotao.fun/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/image-20220513122131352.png">
+<meta property="og:image" content="https://www.luotao.fun/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/image-20220513130352496.png">
+<meta property="og:image" content="https://www.luotao.fun/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/image-20220513130614164.png">
+<meta property="article:published_time" content="2022-05-13T02:23:31.000Z">
+<meta property="article:modified_time" content="2022-05-13T12:22:47.535Z">
+<meta property="article:author" content="kuronekofun">
+<meta property="article:tag" content="SpringBoot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.luotao.fun/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/image-20220513115417093.png">
+
+<link rel="canonical" href="https://www.luotao.fun/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>慕慕生鲜电商项目 | kuronekofun</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">kuronekofun</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">黑猫乐</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/kuronekofun" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.luotao.fun/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="kuronekofun">
+      <meta itemprop="description" content="<font color="#FFFFFF">天道之行，总司一切的男人。</font>">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="kuronekofun">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          慕慕生鲜电商项目
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-05-13 10:23:31 / 修改时间：20:22:47" itemprop="dateCreated datePublished" datetime="2022-05-13T10:23:31+08:00">2022-05-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringBoot%E9%A1%B9%E7%9B%AE/" itemprop="url" rel="index"><span itemprop="name">SpringBoot项目</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>21k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>24 分钟</span>
+            </span>
+            <div class="post-description">定性-分析-解决-预防</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h2><p>log4j2日志组件记录日志；</p>
+<p>使用AOP统一处理Web请求日志（请求地址、请求参数、IP、接口的返回），遇到bug方便排查；</p>
+<p>前台包括用户、商品分类、商品、购物车、订单模块；</p>
+<p>后台包括管理员、商品分类、商品、订单模块；</p>
+<blockquote>
+<p>购物车在前台处理，购物车模块把用户选中的要加入购物车的商品直接汇总到一个订单发送到后台，所以后台没有购物车模块。</p>
+</blockquote>
+<p><strong>前台</strong></p>
+<ul>
+<li>用户模块的功能包括注册、登录、更新签名、登出、管理员登；</li>
+<li>商品分类模块的功能包括多级目录、递归查询、缓存（商品分类变动的频率较小）；</li>
+<li>商品模块的功能包括商品搜索、排序、列表、目录展示、详情；</li>
+<li>购物车模块的功能包括加入商品、列表显示、数量更改、删除商品、勾选反选、全选全不选；</li>
+<li>订单模块的功能包括下单、订单流程、订单详情、取消订单、支付二维码、扫码支付、个人订单、确认收货；</li>
+</ul>
+<p><strong>后台</strong></p>
+<ul>
+<li>管理员模块的功能包括登录登出、身份认证、安全限制；</li>
+<li>商品分类模块的功能包括分类列表、增加分类、修改分类、删除分类；</li>
+<li>商品模块的功能包括商品列表、新增商品、图片上传、更新删除、批量上下架；</li>
+<li>订单模块的功能包括订单列表、地址信息、发货、订单完结；</li>
+</ul>
+<h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><ul>
+<li>SpringBoot 2.2.1.RELEASE</li>
+<li>MyBatis 3.4.6(封装了Jdbc的大部分操作，减少了开发量，SQL和代码分离，便于维护)</li>
+<li>Maven 3.6.1</li>
+<li>log4j2 2.12.1</li>
+</ul>
+<h2 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h2><p>引入依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--mybatis--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--mysql驱动--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据库逆向"><a href="#数据库逆向" class="headerlink" title="数据库逆向"></a>数据库逆向</h3><p><strong>逆向文件插件：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--生成逆向文件的插件--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.generator<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-generator-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">overwrite</span>&gt;</span>true<span class="tag">&lt;/<span class="name">overwrite</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>逆向文件插件配置：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">generatorConfiguration</span></span></span><br><span class="line"><span class="meta">  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">  <span class="string">&quot;http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">generatorConfiguration</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 配置文件，放在resource目录下即可 --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--数据库驱动个人配置--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">classPathEntry</span></span></span><br><span class="line"><span class="tag">    <span class="attr">location</span>=<span class="string">&quot;D:\deve\maven\localRepo\mysql\mysql-connector-java\8.0.18\mysql-connector-java-8.0.18.jar&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">context</span> <span class="attr">id</span>=<span class="string">&quot;MysqlTables&quot;</span> <span class="attr">targetRuntime</span>=<span class="string">&quot;MyBatis3&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;autoDelimitKeywords&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--可以使用``包括字段名，避免字段名与sql保留字冲突报错--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;beginningDelimiter&quot;</span> <span class="attr">value</span>=<span class="string">&quot;`&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;endingDelimiter&quot;</span> <span class="attr">value</span>=<span class="string">&quot;`&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- optional，旨在创建class时，对注释进行控制 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">commentGenerator</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;suppressDate&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;suppressAllComments&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">commentGenerator</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--数据库链接地址账号密码--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jdbcConnection</span> <span class="attr">driverClass</span>=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">connectionURL</span>=<span class="string">&quot;jdbc:mysql://127.0.0.1:3306/imooc_mall?useUnicode=true<span class="symbol">&amp;amp;</span>characterEncoding=UTF-8<span class="symbol">&amp;amp;</span>zeroDateTimeBehavior=convertToNull<span class="symbol">&amp;amp;</span>serverTimezone=GMT&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">userId</span>=<span class="string">&quot;root&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">password</span>=<span class="string">&quot;root&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;nullCatalogMeansCurrent&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">jdbcConnection</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">javaTypeResolver</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;forceBigDecimals&quot;</span> <span class="attr">value</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">javaTypeResolver</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--生成Model类存放位置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">javaModelGenerator</span> <span class="attr">targetPackage</span>=<span class="string">&quot;com.imooc.mall.model.pojo&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">targetProject</span>=<span class="string">&quot;src/main/java&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 是否允许子包，即targetPackage.schemaName.tableName --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;enableSubPackages&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 是否对类CHAR类型的列的数据进行trim操作 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;trimStrings&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;immutable&quot;</span> <span class="attr">value</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">javaModelGenerator</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--生成mapper映射文件存放位置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sqlMapGenerator</span> <span class="attr">targetPackage</span>=<span class="string">&quot;mappers&quot;</span> <span class="attr">targetProject</span>=<span class="string">&quot;src/main/resources&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;enableSubPackages&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sqlMapGenerator</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--生成Dao类存放位置--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">javaClientGenerator</span> <span class="attr">type</span>=<span class="string">&quot;XMLMAPPER&quot;</span> <span class="attr">targetPackage</span>=<span class="string">&quot;com.imooc.mall.model.dao&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">targetProject</span>=<span class="string">&quot;src/main/java&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;enableSubPackages&quot;</span> <span class="attr">value</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">javaClientGenerator</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--生成对应表及类名--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">schema</span>=<span class="string">&quot;root&quot;</span> <span class="attr">tableName</span>=<span class="string">&quot;imooc_mall_cart&quot;</span> <span class="attr">domainObjectName</span>=<span class="string">&quot;Cart&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">enableCountByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">enableUpdateByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableDeleteByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableSelectByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">selectByExampleQueryId</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">&quot;imooc_mall_category&quot;</span> <span class="attr">domainObjectName</span>=<span class="string">&quot;Category&quot;</span> <span class="attr">enableCountByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">enableUpdateByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableDeleteByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableSelectByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">selectByExampleQueryId</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">&quot;imooc_mall_order&quot;</span> <span class="attr">domainObjectName</span>=<span class="string">&quot;Order&quot;</span> <span class="attr">enableCountByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">enableUpdateByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableDeleteByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableSelectByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">selectByExampleQueryId</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">&quot;imooc_mall_order_item&quot;</span> <span class="attr">domainObjectName</span>=<span class="string">&quot;OrderItem&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">enableCountByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">enableUpdateByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableDeleteByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableSelectByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">selectByExampleQueryId</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">&quot;imooc_mall_product&quot;</span> <span class="attr">domainObjectName</span>=<span class="string">&quot;Product&quot;</span> <span class="attr">enableCountByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">enableUpdateByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableDeleteByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableSelectByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">selectByExampleQueryId</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span> <span class="attr">tableName</span>=<span class="string">&quot;imooc_mall_user&quot;</span> <span class="attr">domainObjectName</span>=<span class="string">&quot;User&quot;</span> <span class="attr">enableCountByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">enableUpdateByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableDeleteByExample</span>=<span class="string">&quot;false&quot;</span> <span class="attr">enableSelectByExample</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">selectByExampleQueryId</span>=<span class="string">&quot;false&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">context</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">generatorConfiguration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>插件生成逆向文件：</strong></p>
+<p>双击插件</p>
+<img src="/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/image-20220513115417093.png" class="">
+
+<img src="/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/image-20220513122131352.png" class="">
+
+<h3 id="打通数据库链路"><a href="#打通数据库链路" class="headerlink" title="打通数据库链路"></a>打通数据库链路</h3><p><strong>application.properties:</strong></p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">8080</span></span><br><span class="line"><span class="comment"># 数据源连接信息</span></span><br><span class="line"><span class="attr">spring.datasource.name</span>=<span class="string">imooc_mall_datasource</span></span><br><span class="line"><span class="attr">spring.datasource.url</span>=<span class="string">jdbc:mysql://127.0.0.1:3306/imooc_mall?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai</span></span><br><span class="line"><span class="attr">spring.datasource.driver-class-name</span>=<span class="string">com.mysql.cj.jdbc.Driver</span></span><br><span class="line"><span class="attr">spring.datasource.username</span>=<span class="string">root</span></span><br><span class="line"><span class="attr">spring.datasource.password</span>=<span class="string">root</span></span><br><span class="line"><span class="comment"># Mapper文件位置</span></span><br><span class="line"><span class="attr">mybatis.mapper-locations</span>=<span class="string">classpath:mappers/*.xml</span></span><br></pre></td></tr></table></figure>
+
+<p>@MapperScan</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.mall;</span><br><span class="line"><span class="keyword">import</span> org.mybatis.spring.annotation.MapperScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@MapperScan(basePackages = &quot;com.imooc.mall.model.dao&quot;)</span> <span class="comment">// 扫描mapper实体类映射</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MallApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(MallApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决Mapper爆红"><a href="#解决Mapper爆红" class="headerlink" title="解决Mapper爆红"></a>解决Mapper爆红</h3><img src="/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/image-20220513130352496.png" class="">
+
+<p>在每个Mapper加上注解<code>@Repository</code>标识资源文件即可。</p>
+<img src="/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/image-20220513130614164.png" class="">
+
+<h3 id="log4j2日志"><a href="#log4j2日志" class="headerlink" title="log4j2日志"></a>log4j2日志</h3><blockquote>
+<p>日志级别：error、warn、info、debug、trace</p>
+</blockquote>
+<p><strong>排除Logback依赖：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--排除logback依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--引入log4j4依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-log4j2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>log4j2配置文件：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Configuration</span> <span class="attr">status</span>=<span class="string">&quot;fatal&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Properties</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--日志存储目录--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Property</span> <span class="attr">name</span>=<span class="string">&quot;baseDir&quot;</span> <span class="attr">value</span>=<span class="string">&quot;logs&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">Appenders</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Console</span> <span class="attr">name</span>=<span class="string">&quot;Console&quot;</span> <span class="attr">target</span>=<span class="string">&quot;SYSTEM_OUT&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch） --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span> <span class="attr">onMatch</span>=<span class="string">&quot;ACCEPT&quot;</span> <span class="attr">onMismatch</span>=<span class="string">&quot;DENY&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">&quot;[%d&#123;MM:dd HH:mm:ss.SSS&#125;] [%level] [%logger&#123;36&#125;] - %msg%n&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Console</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--debug级别日志文件输出--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">&quot;debug_appender&quot;</span> <span class="attr">fileName</span>=<span class="string">&quot;$&#123;baseDir&#125;/debug.log&quot;</span> <span class="attr">filePattern</span>=<span class="string">&quot;$&#123;baseDir&#125;/debug_%i.log.%d&#123;yyyy-MM-dd&#125;&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 过滤器 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Filters</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 限制日志级别在debug及以上在info以下 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">&quot;debug&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span> <span class="attr">onMatch</span>=<span class="string">&quot;DENY&quot;</span> <span class="attr">onMismatch</span>=<span class="string">&quot;NEUTRAL&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Filters</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 日志格式 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">&quot;[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n&quot;</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 策略 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 每隔一天转存 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> <span class="attr">interval</span>=<span class="string">&quot;1&quot;</span> <span class="attr">modulate</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件大小 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">&quot;100 MB&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- info级别日志文件输出 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">&quot;info_appender&quot;</span> <span class="attr">fileName</span>=<span class="string">&quot;$&#123;baseDir&#125;/info.log&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">filePattern</span>=<span class="string">&quot;$&#123;baseDir&#125;/info_%i.log.%d&#123;yyyy-MM-dd&#125;&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 过滤器 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Filters</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 限制日志级别在info及以上在error以下 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">&quot;info&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">&quot;error&quot;</span> <span class="attr">onMatch</span>=<span class="string">&quot;DENY&quot;</span> <span class="attr">onMismatch</span>=<span class="string">&quot;NEUTRAL&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Filters</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 日志格式 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">&quot;[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n&quot;</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 策略 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 每隔一天转存 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> <span class="attr">interval</span>=<span class="string">&quot;1&quot;</span> <span class="attr">modulate</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件大小 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">&quot;100 MB&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- error级别日志文件输出 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">RollingFile</span> <span class="attr">name</span>=<span class="string">&quot;error_appender&quot;</span> <span class="attr">fileName</span>=<span class="string">&quot;$&#123;baseDir&#125;/error.log&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">filePattern</span>=<span class="string">&quot;$&#123;baseDir&#125;/error_%i.log.%d&#123;yyyy-MM-dd&#125;&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 过滤器 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Filters</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 限制日志级别在error及以上 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">ThresholdFilter</span> <span class="attr">level</span>=<span class="string">&quot;error&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Filters</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 日志格式 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">PatternLayout</span> <span class="attr">pattern</span>=<span class="string">&quot;[%d&#123;HH:mm:ss:SSS&#125;] [%p] - %l - %m%n&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">Policies</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 每隔一天转存 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">TimeBasedTriggeringPolicy</span> <span class="attr">interval</span>=<span class="string">&quot;1&quot;</span> <span class="attr">modulate</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件大小 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">SizeBasedTriggeringPolicy</span> <span class="attr">size</span>=<span class="string">&quot;100 MB&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">Policies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RollingFile</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Appenders</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Loggers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">Root</span> <span class="attr">level</span>=<span class="string">&quot;debug&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">&quot;Console&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">&quot;debug_appender&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">&quot;info_appender&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">AppenderRef</span> <span class="attr">ref</span>=<span class="string">&quot;error_appender&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">Root</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Loggers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="AOP统一处理Web请求日志"><a href="#AOP统一处理Web请求日志" class="headerlink" title="AOP统一处理Web请求日志"></a>AOP统一处理Web请求日志</h3><blockquote>
+<p>创建Filter把请求信息和响应信息都打印出来，增加系统健壮性，也方便调试。</p>
+</blockquote>
+<p><strong>引入AOP依赖</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--AOP--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>创建filter过滤器切面类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.mall.filter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.core.JsonProcessingException;</span><br><span class="line"><span class="keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.AfterReturning;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Pointcut;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.RequestContextHolder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.context.request.ServletRequestAttributes;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 打印请求信息和响应信息</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> kuroneko</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">// 切面类</span></span><br><span class="line"><span class="meta">@Component</span> <span class="comment">// 交给spring管理</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebLogAspect</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LoggerFactory.getLogger(WebLogAspect.class);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 拦截点 */</span></span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(public * com.imooc.mall.controller.*.*(..))&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">webLog</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 前置通知 log记录请求信息*/</span></span><br><span class="line">    <span class="meta">@Before(&quot;webLog()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doBefore</span><span class="params">(JoinPoint joinPoint)</span> &#123;</span><br><span class="line">        <span class="comment">// 获取当前请求request</span></span><br><span class="line">        <span class="type">ServletRequestAttributes</span> <span class="variable">attributes</span> <span class="operator">=</span> (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();</span><br><span class="line">        <span class="type">HttpServletRequest</span> <span class="variable">request</span> <span class="operator">=</span> attributes.getRequest();</span><br><span class="line"></span><br><span class="line">        log.info(<span class="string">&quot;URL: &quot;</span> + request.getRequestURL().toString());</span><br><span class="line">        log.info(<span class="string">&quot;HTTP_METHOD: &quot;</span> + request.getMethod());</span><br><span class="line">        log.info(<span class="string">&quot;IP: &quot;</span> + request.getRemoteAddr());</span><br><span class="line">        log.info(<span class="string">&quot;CLASS_METHOD: &quot;</span>+ joinPoint.getSignature().getDeclaringTypeName() + <span class="string">&quot;.&quot;</span> + joinPoint.getSignature().getName());</span><br><span class="line">        <span class="comment">// 参数信息，字符串数组保存</span></span><br><span class="line">        log.info(<span class="string">&quot;ARGS: &quot;</span> + Arrays.toString(joinPoint.getArgs()));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 返回后通知 log记录响应信息*/</span></span><br><span class="line">    <span class="meta">@AfterReturning(returning = &quot;res&quot;, pointcut = &quot;webLog()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doAfterReturning</span><span class="params">(Object res)</span> <span class="keyword">throws</span> JsonProcessingException &#123;</span><br><span class="line">        <span class="comment">// FastJson工具把响应对象转为Json</span></span><br><span class="line">        log.info(<span class="string">&quot;RESPONSE: &quot;</span> + <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>().writeValueAsString(res));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="用户模块"><a href="#用户模块" class="headerlink" title="用户模块"></a>用户模块</h2><p>登录、注册、重名校验、密码加密存储、session、越权校验（没有登录不能修改，登录后只能修改自己信息）、统一响应对象、异常枚举化处理、Java异常体系、写完接口使用Postman测试、统一异常处理（过滤器）、更新个人信息。</p>
+<h3 id="统一响应对象"><a href="#统一响应对象" class="headerlink" title="统一响应对象"></a>统一响应对象</h3><p>响应信息统一格式。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.mall.common;</span><br><span class="line"><span class="keyword">import</span> com.imooc.mall.exception.ImoocMallExceptionEnum;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 统一响应对象</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> kuroneko</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ApiRestResponse</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="comment">/** 响应状态码 */</span></span><br><span class="line">    <span class="keyword">private</span> Integer status;</span><br><span class="line">    <span class="comment">/** 响应信息 */</span></span><br><span class="line">    <span class="keyword">private</span> String msg;</span><br><span class="line">    <span class="comment">/** 响应数据 */</span></span><br><span class="line">    <span class="keyword">private</span> T data;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 多数情况下都是正常返回 */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">OK_CODE</span> <span class="operator">=</span> <span class="number">10000</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">OK_MSG</span> <span class="operator">=</span> <span class="string">&quot;SUCCESS&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ApiRestResponse</span><span class="params">(Integer status, String msg, T data)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.status = status;</span><br><span class="line">        <span class="built_in">this</span>.msg = msg;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ApiRestResponse</span><span class="params">(Integer status, String msg)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.status = status;</span><br><span class="line">        <span class="built_in">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * ApiRestResponse(10000, SUCCESS)</span></span><br><span class="line"><span class="comment">     * 调用无参构造时默认正常返回，调用双参构造设置正常的响应信息 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ApiRestResponse</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>(OK_CODE, OK_MSG);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 调用无参正常响应信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> ApiRestResponse(10000, SUCCESS)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; ApiRestResponse&lt;T&gt; <span class="title function_">success</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ApiRestResponse</span>&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 调用无参并将响应数据data传入响应</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> result 响应数据data</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> ApiRestResponse(10000, SUCCESS, result)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; ApiRestResponse&lt;T&gt; <span class="title function_">success</span><span class="params">(T result)</span>&#123;</span><br><span class="line">        ApiRestResponse&lt;T&gt; response = <span class="keyword">new</span> <span class="title class_">ApiRestResponse</span>&lt;&gt;();</span><br><span class="line">        response.setData(result);</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 异常的响应信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> code 异常码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> msg 异常信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> ApiRestResponse(异常码, 异常信息)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; ApiRestResponse&lt;T&gt; <span class="title function_">error</span><span class="params">(Integer code, String msg)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ApiRestResponse</span>&lt;&gt;(code, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 枚举异常响应信息</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> ex 枚举异常</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> ApiRestResponse(枚举异常码, 枚举异常信息)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; ApiRestResponse&lt;T&gt; <span class="title function_">error</span><span class="params">(ImoocMallExceptionEnum ex)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ApiRestResponse</span>&lt;&gt;(ex.getCode(), ex.getMsg());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;ApiRestResponse&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;status=&quot;</span> + status +</span><br><span class="line">                <span class="string">&quot;, msg=&#x27;&quot;</span> + msg + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, data=&quot;</span> + data +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> 	<span class="comment">// Getter and Setter</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="异常枚举"><a href="#异常枚举" class="headerlink" title="异常枚举"></a>异常枚举</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.mall.exception;</span><br><span class="line"><span class="comment">/** 异常枚举化处理,收集常用的异常 */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> <span class="title class_">ImoocMallExceptionEnum</span> &#123;</span><br><span class="line">    NEED_USER_NAME(<span class="number">10001</span>, <span class="string">&quot;用户名不能为空&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** 异常码 */</span></span><br><span class="line">    Integer code;</span><br><span class="line">    <span class="comment">/** 异常信息 */</span></span><br><span class="line">    String msg;</span><br><span class="line"></span><br><span class="line">    ImoocMallExceptionEnum(Integer code, String msg) &#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">        <span class="built_in">this</span>.msg = msg;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// Getter and Setter</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="1-注册"><a href="#1-注册" class="headerlink" title="1 注册"></a>1 注册</h3><p><strong>设计请求</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST</span><br><span class="line">/register?username=neko1&amp;password=<span class="number">12345678</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>响应信息</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">10000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SUCCESS&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-1-注册-持久层"><a href="#1-1-注册-持久层" class="headerlink" title="1.1 注册-持久层"></a>1.1 注册-持久层</h4><p><strong>设计抽象方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 由用户名查询用户数据 */</span></span><br><span class="line">User <span class="title function_">selectByName</span><span class="params">(String username)</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>编写映射</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectByName&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.String&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span>&gt;</span></span><br><span class="line">    SELECT</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span>/&gt;</span></span><br><span class="line">    FROM imooc_mall_user</span><br><span class="line">    WHERE username = #&#123;username,jdbcType=VARCHAR&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-2-注册-业务层"><a href="#1-2-注册-业务层" class="headerlink" title="1.2 注册-业务层"></a>1.2 注册-业务层</h4><p><strong>业务层统一异常</strong></p>
+<ul>
+<li>用户名重名异常</li>
+<li>插入异常</li>
+</ul>
+<p>创建<code>ImoocMallException</code>继承<code>Exception</code>并利用枚举构造出业务层异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.mall.exception;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 业务层统一异常</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> kuroneko</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ImoocMallException</span> <span class="keyword">extends</span> <span class="title class_">Exception</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Integer code;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String message;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ImoocMallException</span><span class="params">(Integer code, String message)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.code = code;</span><br><span class="line">        <span class="built_in">this</span>.message = message;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** 利用枚举构造出业务层异常 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ImoocMallException</span><span class="params">(ImoocMallExceptionEnum exceptionEnum)</span>&#123;</span><br><span class="line">        <span class="comment">// 调用双参构造</span></span><br><span class="line">        <span class="built_in">this</span>(exceptionEnum.getCode(), exceptionEnum.getMsg());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getMessage</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> message;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>继续枚举异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME_EXISTED(<span class="number">10004</span>, <span class="string">&quot;不允许重名，注册失败&quot;</span>),</span><br><span class="line">INSERT_FAILED(<span class="number">10005</span>, <span class="string">&quot;插入失败，请重试&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>设计抽象方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 注册</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> username 用户名</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> password 密码</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">register</span><span class="params">(String username, String password)</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实现抽象方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 注册</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> username 用户名</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> password 密码</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">register</span><span class="params">(String username, String password)</span> <span class="keyword">throws</span> ImoocMallException &#123;</span><br><span class="line">       <span class="comment">// 重名校验：用户名重复抛出异常</span></span><br><span class="line">       <span class="type">User</span> <span class="variable">result</span> <span class="operator">=</span> userMapper.selectByName(username);</span><br><span class="line">       <span class="keyword">if</span> (result != <span class="literal">null</span>) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ImoocMallException</span>(ImoocMallExceptionEnum.NAME_EXISTED);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 用户名没有重复则向用户表插入一条记录</span></span><br><span class="line">       <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">       user.setUsername(username);</span><br><span class="line">       user.setPassword(password);</span><br><span class="line">       <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> userMapper.insertSelective(user);</span><br><span class="line">       <span class="comment">// 插入失败抛出异常</span></span><br><span class="line">       <span class="keyword">if</span> (count == <span class="number">0</span>)&#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">ImoocMallException</span>(ImoocMallExceptionEnum.INSERT_FAILED);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="全局统一异常处理"><a href="#全局统一异常处理" class="headerlink" title="全局统一异常处理"></a>全局统一异常处理</h4><blockquote>
+<p>在重名校验时，在业务层直接抛出了异常而没有转化为Json的ApiRestResponse返回给前台。而且返回给前台的信息格式没有统一且包含敏感字段,所以定义一个全局异常处理GlobalExceptionHandler来统一处理异常，把异常信息也转化为返回Json的ApiRestResponse统一输出。</p>
+</blockquote>
+<p>重名时的响应信息：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;timestamp&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2022-05-13T11:38:09.272+0000&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">500</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;error&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Internal Server Error&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="string">&quot;No message available&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/register&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.mall.exception;</span><br><span class="line"><span class="keyword">import</span> com.imooc.mall.common.ApiRestResponse;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ControllerAdvice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ExceptionHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 统一异常处理,把拦截到的异常转化为Json的ApiRestResponse统一输出 */</span></span><br><span class="line"><span class="meta">@ControllerAdvice</span> <span class="comment">// 拦截异常</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GlobalExceptionHandler</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">log</span> <span class="operator">=</span> LoggerFactory.getLogger(GlobalExceptionHandler.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler(Exception.class)</span> <span class="comment">// 拦截Exception类型的异常</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">handleException</span><span class="params">(Exception e)</span>&#123;</span><br><span class="line">        <span class="comment">// 记录Exception类型的异常</span></span><br><span class="line">        log.error(<span class="string">&quot;Default Exception: &quot;</span>, e);</span><br><span class="line">        <span class="keyword">return</span> ApiRestResponse.error(ImoocMallExceptionEnum.SYSTEM_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler(ImoocMallException.class)</span> <span class="comment">// 拦截业务异常，比如用户重名异常</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">handleImoocMallException</span><span class="params">(ImoocMallException e)</span>&#123;</span><br><span class="line">        <span class="comment">// 记录业务异常</span></span><br><span class="line">        log.error(<span class="string">&quot;ImoocMallException: &quot;</span>, e);</span><br><span class="line">        <span class="keyword">return</span> ApiRestResponse.error(e.getCode(), e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>枚举Exception类型的异常：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SYSTEM_ERROR(20000, &quot;系统异常&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>添加全局统一异常处理后，重名时的响应信息：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">10004</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;不允许重名，注册失败&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1-3-注册-控制层"><a href="#1-3-注册-控制层" class="headerlink" title="1.3 注册-控制层"></a>1.3 注册-控制层</h4><p><strong>异常处理</strong></p>
+<ul>
+<li>用户名和密码都不能为空</li>
+<li>密码长度不能小于8位</li>
+</ul>
+<p>继续枚举异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">NEED_USER_NAME(<span class="number">10001</span>, <span class="string">&quot;用户名不能为空&quot;</span>),</span><br><span class="line">NEED_PASSWORD(<span class="number">10002</span>, <span class="string">&quot;密码不能为空&quot;</span>),</span><br><span class="line">PASSWORD_TOO_SHORT(<span class="number">10003</span>, <span class="string">&quot;密码长度不能小于8位&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>请求处理方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 注册 */</span></span><br><span class="line">   <span class="meta">@PostMapping(&quot;/register&quot;)</span> <span class="comment">// 绑定url</span></span><br><span class="line">   <span class="meta">@ResponseBody</span> <span class="comment">// Json格式通信</span></span><br><span class="line">   <span class="keyword">public</span> ApiRestResponse <span class="title function_">register</span><span class="params">(<span class="meta">@RequestParam(&quot;username&quot;)</span> String username, <span class="meta">@RequestParam(&quot;password&quot;)</span>String password)</span> <span class="keyword">throws</span> ImoocMallException &#123;</span><br><span class="line">       <span class="comment">// 1.用户名和密码的空校验</span></span><br><span class="line">       <span class="keyword">if</span> (StringUtils.isEmpty(username))&#123;</span><br><span class="line">           <span class="comment">//用户名不能为空</span></span><br><span class="line">           <span class="keyword">return</span> ApiRestResponse.error(ImoocMallExceptionEnum.NEED_USER_NAME);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (StringUtils.isEmpty(password))&#123;</span><br><span class="line">           <span class="comment">//密码不能为空</span></span><br><span class="line">           <span class="keyword">return</span> ApiRestResponse.error(ImoocMallExceptionEnum.NEED_PASSWORD);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// 2.密码长度不能小于8位</span></span><br><span class="line">       <span class="keyword">if</span> (password.length() &lt; <span class="number">8</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> ApiRestResponse.error(ImoocMallExceptionEnum.PASSWORD_TOO_SHORT);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// 3.用户名和密码正常则向用户表插入一条记录</span></span><br><span class="line">       userService.register(username, password);</span><br><span class="line">       <span class="keyword">return</span> ApiRestResponse.success();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-4-接口测试"><a href="#1-4-接口测试" class="headerlink" title="1.4 接口测试"></a>1.4 接口测试</h4><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">10001</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;用户名不能为空&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">10002</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;密码不能为空&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">10003</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;密码长度不能小于8位&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-登录"><a href="#2-登录" class="headerlink" title="2 登录"></a>2 登录</h3><p><strong>设计请求</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST</span><br><span class="line">/login?username=neko1&amp;password=neko1</span><br></pre></td></tr></table></figure>
+
+<p><strong>响应信息</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">10000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SUCCESS&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">9</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xiaomu2&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span><span class="punctuation">,</span> <span class="comment">//密码敏感信息不返回</span></span><br><span class="line">        <span class="attr">&quot;personalizedSignature&quot;</span><span class="punctuation">:</span> <span class="string">&quot;祝你今天好心情&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;createTime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2020-02-09T12:39:47.000+0000&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;updateTime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2020-02-10T16:56:02.000+0000&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-更新签名"><a href="#3-更新签名" class="headerlink" title="3 更新签名"></a>3 更新签名</h3><p><strong>设计请求</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST</span><br><span class="line">/user/update?signature=天道之行，总司一切。</span><br></pre></td></tr></table></figure>
+
+<p><strong>响应信息</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">10000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SUCCESS&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-登出"><a href="#4-登出" class="headerlink" title="4 登出"></a>4 登出</h3><p><strong>设计请求</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST</span><br><span class="line">/user/logout</span><br></pre></td></tr></table></figure>
+
+<p><strong>响应信息</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">10000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SUCCESS&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-管理员登录"><a href="#5-管理员登录" class="headerlink" title="5 管理员登录"></a>5 管理员登录</h3><p><strong>设计请求</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">POST</span><br><span class="line">/adminLogin?username=admin&amp;password=admin</span><br></pre></td></tr></table></figure>
+
+<p><strong>响应信息</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;status&quot;</span><span class="punctuation">:</span> <span class="number">10000</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;SUCCESS&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">9</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;username&quot;</span><span class="punctuation">:</span> <span class="string">&quot;admin&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;password&quot;</span><span class="punctuation">:</span> <span class="keyword">null</span><span class="punctuation">,</span> <span class="comment">//敏感信息不返回</span></span><br><span class="line">        <span class="attr">&quot;personalizedSignature&quot;</span><span class="punctuation">:</span> <span class="string">&quot;祝你今天好心情&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span> <span class="comment">//管理员</span></span><br><span class="line">        <span class="attr">&quot;createTime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2020-02-09T12:39:47.000+0000&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;updateTime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2020-02-10T16:56:02.000+0000&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+	
+	
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+-------------本文结束 <i class="fa fa-heart"></i> 感谢阅读-------------
+</div>
+
+    
+        <div class="reward-container">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="kuronekofun 微信支付">
+        <p>微信支付</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>kuronekofun
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://www.luotao.fun/2022/05/13/%E6%85%95%E6%85%95%E7%94%9F%E9%B2%9C%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/" title="慕慕生鲜电商项目">https://www.luotao.fun/2022/05/13/慕慕生鲜电商项目/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/SpringBoot/" rel="tag"><i class="fa fa-tag"></i> SpringBoot</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/10/%E7%94%B5%E8%84%91%E5%95%86%E5%9F%8E/" rel="prev" title="电脑商城">
+      <i class="fa fa-chevron-left"></i> 电脑商城
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/13/Java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB/" rel="next" title="Java异常体系">
+      Java异常体系 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="nav-text">功能模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="nav-text">技术选型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">项目初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E9%80%86%E5%90%91"><span class="nav-text">数据库逆向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E9%80%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E9%93%BE%E8%B7%AF"><span class="nav-text">打通数据库链路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3Mapper%E7%88%86%E7%BA%A2"><span class="nav-text">解决Mapper爆红</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#log4j2%E6%97%A5%E5%BF%97"><span class="nav-text">log4j2日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86Web%E8%AF%B7%E6%B1%82%E6%97%A5%E5%BF%97"><span class="nav-text">AOP统一处理Web请求日志</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%A8%A1%E5%9D%97"><span class="nav-text">用户模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%9F%E4%B8%80%E5%93%8D%E5%BA%94%E5%AF%B9%E8%B1%A1"><span class="nav-text">统一响应对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E6%9E%9A%E4%B8%BE"><span class="nav-text">异常枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B3%A8%E5%86%8C"><span class="nav-text">1 注册</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-%E6%B3%A8%E5%86%8C-%E6%8C%81%E4%B9%85%E5%B1%82"><span class="nav-text">1.1 注册-持久层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-%E6%B3%A8%E5%86%8C-%E4%B8%9A%E5%8A%A1%E5%B1%82"><span class="nav-text">1.2 注册-业务层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E7%BB%9F%E4%B8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-text">全局统一异常处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-%E6%B3%A8%E5%86%8C-%E6%8E%A7%E5%88%B6%E5%B1%82"><span class="nav-text">1.3 注册-控制层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95"><span class="nav-text">1.4 接口测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%99%BB%E5%BD%95"><span class="nav-text">2 登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9B%B4%E6%96%B0%E7%AD%BE%E5%90%8D"><span class="nav-text">3 更新签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%99%BB%E5%87%BA"><span class="nav-text">4 登出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E7%AE%A1%E7%90%86%E5%91%98%E7%99%BB%E5%BD%95"><span class="nav-text">5 管理员登录</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="kuronekofun"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">kuronekofun</p>
+  <div class="site-description" itemprop="description"><font color="#FFFFFF">天道之行，总司一切的男人。</font></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/kuronekofun" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;kuronekofun" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:coder.kuroneko@gmail.com" title="E-Mail → mailto:coder.kuroneko@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Friend Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.mps.gov.cn/" title="https:&#x2F;&#x2F;www.mps.gov.cn&#x2F;" rel="noopener" target="_blank">Gov</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kuronekofun</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">166k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3:04</span>
+</div>
+
+<!-- 网站运行时间的设置 -->
+<span id="runtime_span"></span>
+<script type="text/javascript">
+    function show_runtime() {
+        window.setTimeout("show_runtime()", 1000);
+        X = new Date("5/1/2022 0:00:00");
+        Y = new Date();
+        T = (Y.getTime() - X.getTime());
+        M = 24 * 60 * 60 * 1000;
+        a = T / M;
+        A = Math.floor(a);
+        b = (a - A) * 24;
+        B = Math.floor(b);
+        c = (b - B) * 60;
+        C = Math.floor((b - B) * 60);
+        D = Math.floor((c - C) * 60);
+        runtime_span.innerHTML = "本站已运行" + A + "天" + B + "小时" + C + "分" + D + "秒"
+    }
+    show_runtime();
+</script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
